@@ -5,14 +5,14 @@
 1. Спроектируйте to be архитектуру КиноБездны, разделив всю систему на отдельные домены и организовав интеграционное взаимодействие и единую точку вызова сервисов.
 Результат представьте в виде контейнерной диаграммы в нотации С4.
 Добавьте ссылку на файл в этот шаблон
-[ссылка на файл](ссылка)
+
+[Ссылка на картинку с диаграмой](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/schemas/containers.png)
 
 
 ## Задание 2
 
 ### 1. Proxy
 Команда КиноБездны уже выделила сервис метаданных о фильмах movies и вам необходимо реализовать бесшовный переход с применением паттерна Strangler Fig в части реализации прокси-сервиса (API Gateway), с помощью которого можно будет постепенно переключать траффик, используя фиче-флаг.
-
 
 Реализуйте сервис на любом языке программирования в ./src/microservices/proxy.
 Конфигурация для запуска сервиса через docker-compose уже добавлена
@@ -41,11 +41,24 @@
 ```
 
 - После реализации запустите postman тесты - они все должны быть зеленые.
+
+— [Ссылка на скриншот с таблицей пройденных тестов](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_4.png)
+
+— [Ссылка на скриншот с деталями тестов 1](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_1.png)
+
+— [Ссылка на скриншот с деталями тестов 2](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_2.png)
+
+— [Ссылка на скриншот с деталями тестов 3](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_3.png)
+
 - Отправьте запросы к API Gateway:
    ```bash
    curl http://localhost:8000/api/movies
    ```
+— [Ссылка на скриншот с результатом запроса ](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_5.png)
+
 - Протестируйте постепенный переход, изменив переменную окружения MOVIES_MIGRATION_PERCENT в файле docker-compose.yml.
+
+— [Ссылка на скриншот с таблицей пройденных тестов](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_9.png)
 
 ### 2. Kafka
  Вам как архитектуру нужно также проверить гипотезу насколько просто реализовать применение Kafka в данной архитектуре.
@@ -59,6 +72,13 @@
 Необходимые тесты для проверки этого API вызываются при запуске npm run test:local из папки tests/postman 
 Приложите скриншот тестов и скриншот состояния топиков Kafka http://localhost:8090 
 
+— [Ссылка на скриншот с таблицей пройденных тестов](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_4.png)
+
+— [Ссылка на скриншот с состояния топиков Kafka 1](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_6.png)
+
+— [Ссылка на скриншот с состояния топиков Kafka 2](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_7.png)
+
+— [Ссылка на скриншот с состояния топиков Kafka 3](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_8.png)
 
 ## Задание 3
 
@@ -110,6 +130,7 @@ jobs:
 Как только сборка отработает и в github registry появятся ваши образы, можно переходить к блоку настройки Kubernetes
 Успешным результатом данного шага является "зеленая" сборка и "зеленые" тесты
 
+— [Ссылка на скриншот с успешной сборки и успешных тестов](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_10.png)
 
 ### Proxy в Kubernetes
 
@@ -269,11 +290,17 @@ cat .docker/config.json | base64
    npm run test:kubernetes
   ```
   Часть тестов с health-чек упадет, но создание событий отработает.
+
+— [Ссылка на скриншот с тестами](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/image.png)
+
   Откройте логи event-service и сделайте скриншот обработки событий
+
+— [Ссылка на скриншот с логами](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_13.png)
 
 #### Шаг 3
 Добавьте сюда скриншота вывода при вызове https://cinemaabyss.example.com/api/movies и  скриншот вывода event-service после вызова тестов.
 
+— [Ссылка на скриншот с логами](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_13.png)
 
 ## Задание 4
 Для простоты дальнейшего обновления и развертывания вам как архитектуру необходимо так же реализовать helm-чарты для прокси-сервиса и проверить работу 
@@ -349,7 +376,11 @@ minikube tunnel
 https://cinemaabyss.example.com/api/movies
 и приложите скриншот развертывания helm и вывода https://cinemaabyss.example.com/api/movies
 
+— [Cкриншот развертывания helm ](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_11.png)
 
+— [Cкриншот вывода https://cinemaabyss.example.com/api/movies ](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_12.png)
+
+— [Cкриншот вывода npm run test:kubernetes ](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_14.png)
 # Задание 5
 Компания планирует активно развиваться и для повышения надежности, безопасности, реализации сетевых паттернов типа Circuit Breaker и канареечного деплоя вам как архитектору необходимо развернуть istio и настроить circuit breaker для monolith и movies сервисов.
 
@@ -388,7 +419,7 @@ kubectl exec -n cinemaabyss $FORTIO_POD -c fortio -- fortio load -c 50 -qps 0 -n
 Например,
 
 ```bash
-kubectl exec -n cinemaabyss fortio-deploy-b6757cbbb-7c9qg  -c fortio -- fortio load -c 50 -qps 0 -n 500 -loglevel Warning http://movies-service:8081/api/movies
+kubectl exec -n cinemaabyss fortio-deploy-5c948d95cf-dmdhz  -c fortio -- fortio load -c 50 -qps 0 -n 500 -loglevel Warning http://movies-service:8081/api/movies
 ```
 
 Вывод будет типа такого
@@ -400,10 +431,13 @@ Code 200 : 79 (15.8 %)
 Code 500 : 22 (4.4 %)
 Code 503 : 399 (79.8 %)
 ```
+
+— [Cкриншот вывода ](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_15.png)
+
 Можно еще проверить статистику
 
 ```bash
-kubectl exec -n cinemaabyss fortio-deploy-b6757cbbb-7c9qg -c istio-proxy -- pilot-agent request GET stats | grep movies-service | grep pending
+kubectl exec -n cinemaabyss fortio-deploy-5c948d95cf-dmdhz -c istio-proxy -- pilot-agent request GET stats | grep movies-service | grep pending
 ```
 
 И там смотрим 
@@ -414,6 +448,8 @@ You can see 21 for the upstream_rq_pending_overflow value which means 21 calls s
 ```
 
 Приложите скриншот работы circuit breaker'а
+
+— [Cкриншот вывода ](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_16.png)
 
 Удаляем все
 ```bash

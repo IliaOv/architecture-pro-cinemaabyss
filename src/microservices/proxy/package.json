@@ -1,0 +1,9 @@
+{
+  "name": "events-service",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.19.2",
+    "axios": "^1.13.2"
+  }
+}
