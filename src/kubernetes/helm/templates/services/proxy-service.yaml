@@ -23,9 +23,34 @@ spec:
       labels:
         app: proxy-service
     spec:
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: dockerconfigjson
       containers:
-      - name: proxy-service
-        ..... тут
+        - name: proxy-service
+          image: "{{ .Values.proxyService.image.repository }}:{{ .Values.proxyService.image.tag }}"
+          imagePullPolicy: "{{ .Values.proxyService.image.pullPolicy }}"
+          ports:
+            - containerPort: {{ .Values.proxyService.service.targetPort }}
+          resources:
+            limits:
+              cpu: "{{ .Values.proxyService.resources.limits.cpu }}"
+              memory: "{{ .Values.proxyService.resources.limits.memory }}"
+            requests:
+              cpu: "{{ .Values.proxyService.resources.requests.cpu }}"
+              memory: "{{ .Values.proxyService.resources.requests.memory }}"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.proxyService.service.targetPort }}
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.proxyService.service.targetPort }}
+            initialDelaySeconds: 15
+            periodSeconds: 20
 ---
 apiVersion: v1
 kind: Service
@@ -37,6 +62,11 @@ metadata:
     app.kubernetes.io/name: {{ include "cinemaabyss.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
 spec:
+  type: {{ .Values.proxyService.service.type }}
   selector:
-    ... и тут
+    app: proxy-service
+  ports:
+    - name: http
+      port: {{ .Values.proxyService.service.port }}
+      targetPort: {{ .Values.proxyService.service.targetPort }}
 {{- end }}
