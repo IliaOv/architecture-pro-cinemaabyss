@@ -5,14 +5,13 @@
 1. Спроектируйте to be архитектуру КиноБездны, разделив всю систему на отдельные домены и организовав интеграционное взаимодействие и единую точку вызова сервисов.
 Результат представьте в виде контейнерной диаграммы в нотации С4.
 Добавьте ссылку на файл в этот шаблон
-[ссылка на файл](ссылка)
+[Ссылка на картинку с диаграмой](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/schemas/containers.png)
 
 
 ## Задание 2
 
 ### 1. Proxy
 Команда КиноБездны уже выделила сервис метаданных о фильмах movies и вам необходимо реализовать бесшовный переход с применением паттерна Strangler Fig в части реализации прокси-сервиса (API Gateway), с помощью которого можно будет постепенно переключать траффик, используя фиче-флаг.
-
 
 Реализуйте сервис на любом языке программирования в ./src/microservices/proxy.
 Конфигурация для запуска сервиса через docker-compose уже добавлена
@@ -41,11 +40,20 @@
 ```
 
 - После реализации запустите postman тесты - они все должны быть зеленые.
+
+[Ссылка на скриншот с таблицей пройденных тестов](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_4.png)
+[Ссылка на скриншот с деталями тестов 1](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_1.png)
+[Ссылка на скриншот с деталями тестов 2](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_2.png)
+[Ссылка на скриншот с деталями тестов 3](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_3.png)
+
 - Отправьте запросы к API Gateway:
    ```bash
    curl http://localhost:8000/api/movies
    ```
+[Ссылка на скриншот с результатом запроса ](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_5.png)
+
 - Протестируйте постепенный переход, изменив переменную окружения MOVIES_MIGRATION_PERCENT в файле docker-compose.yml.
+[Ссылка на скриншот с таблицей пройденных тестов](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_9.png)
 
 ### 2. Kafka
  Вам как архитектуру нужно также проверить гипотезу насколько просто реализовать применение Kafka в данной архитектуре.
@@ -58,7 +66,9 @@
 
 Необходимые тесты для проверки этого API вызываются при запуске npm run test:local из папки tests/postman 
 Приложите скриншот тестов и скриншот состояния топиков Kafka http://localhost:8090 
-
+[Ссылка на скриншот с состояния топиков Kafka 1](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_6.png)
+[Ссылка на скриншот с состояния топиков Kafka 2](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_7.png)
+[Ссылка на скриншот с состояния топиков Kafka 3](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_8.png)
 
 ## Задание 3
 
