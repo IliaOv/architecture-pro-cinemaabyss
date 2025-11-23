@@ -380,6 +380,7 @@ https://cinemaabyss.example.com/api/movies
 
 — [Cкриншот вывода https://cinemaabyss.example.com/api/movies ](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_12.png)
 
+— [Cкриншот вывода npm run test:kubernetes ](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_14.png)
 # Задание 5
 Компания планирует активно развиваться и для повышения надежности, безопасности, реализации сетевых паттернов типа Circuit Breaker и канареечного деплоя вам как архитектору необходимо развернуть istio и настроить circuit breaker для monolith и movies сервисов.
 
@@ -418,7 +419,7 @@ kubectl exec -n cinemaabyss $FORTIO_POD -c fortio -- fortio load -c 50 -qps 0 -n
 Например,
 
 ```bash
-kubectl exec -n cinemaabyss fortio-deploy-b6757cbbb-7c9qg  -c fortio -- fortio load -c 50 -qps 0 -n 500 -loglevel Warning http://movies-service:8081/api/movies
+kubectl exec -n cinemaabyss fortio-deploy-5c948d95cf-dmdhz  -c fortio -- fortio load -c 50 -qps 0 -n 500 -loglevel Warning http://movies-service:8081/api/movies
 ```
 
 Вывод будет типа такого
@@ -430,10 +431,13 @@ Code 200 : 79 (15.8 %)
 Code 500 : 22 (4.4 %)
 Code 503 : 399 (79.8 %)
 ```
+
+— [Cкриншот вывода ](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_15.png)
+
 Можно еще проверить статистику
 
 ```bash
-kubectl exec -n cinemaabyss fortio-deploy-b6757cbbb-7c9qg -c istio-proxy -- pilot-agent request GET stats | grep movies-service | grep pending
+kubectl exec -n cinemaabyss fortio-deploy-5c948d95cf-dmdhz -c istio-proxy -- pilot-agent request GET stats | grep movies-service | grep pending
 ```
 
 И там смотрим 
@@ -444,6 +448,8 @@ You can see 21 for the upstream_rq_pending_overflow value which means 21 calls s
 ```
 
 Приложите скриншот работы circuit breaker'а
+
+— [Cкриншот вывода ](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_16.png)
 
 Удаляем все
 ```bash
