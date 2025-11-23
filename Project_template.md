@@ -130,6 +130,7 @@ jobs:
 Как только сборка отработает и в github registry появятся ваши образы, можно переходить к блоку настройки Kubernetes
 Успешным результатом данного шага является "зеленая" сборка и "зеленые" тесты
 
+— [Ссылка на скриншот с успешной сборки и успешных тестов](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_10.png)
 
 ### Proxy в Kubernetes
 
@@ -289,11 +290,17 @@ cat .docker/config.json | base64
    npm run test:kubernetes
   ```
   Часть тестов с health-чек упадет, но создание событий отработает.
+
+— [Ссылка на скриншот с тестами](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/image.png)
+
   Откройте логи event-service и сделайте скриншот обработки событий
+
+— [Ссылка на скриншот с логами](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_13.png)
 
 #### Шаг 3
 Добавьте сюда скриншота вывода при вызове https://cinemaabyss.example.com/api/movies и  скриншот вывода event-service после вызова тестов.
 
+— [Ссылка на скриншот с логами](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_13.png)
 
 ## Задание 4
 Для простоты дальнейшего обновления и развертывания вам как архитектуру необходимо так же реализовать helm-чарты для прокси-сервиса и проверить работу 
