@@ -72,6 +72,8 @@
 Необходимые тесты для проверки этого API вызываются при запуске npm run test:local из папки tests/postman 
 Приложите скриншот тестов и скриншот состояния топиков Kafka http://localhost:8090 
 
+— [Ссылка на скриншот с таблицей пройденных тестов](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_4.png)
+
 — [Ссылка на скриншот с состояния топиков Kafka 1](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_6.png)
 
 — [Ссылка на скриншот с состояния топиков Kafka 2](https://github.com/IliaOv/architecture-pro-cinemaabyss/blob/cinema/tests/screenshots/Screenshot_7.png)
